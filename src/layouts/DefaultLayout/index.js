@@ -6,7 +6,7 @@ const DefaultLayout = () => {
   return (
     <div>
       <Navbar />
-      <div style={{ marginTop: 80, padding: 40 }}>
+      <div style={{ marginTop: 80 }}>
         <Outlet />
       </div>
     </div>

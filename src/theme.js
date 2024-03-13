@@ -1,6 +1,7 @@
 import { createTheme } from "@material-ui/core";
 
 const typography = {
+  fontFamily: "Poppins, sans-serif",
   h1: {
     fontWeight: 500,
     fontSize: 35,
@@ -111,7 +112,7 @@ const themeSettings = {
       contrastText: "rgba(255,255,255,0.87)",
     },
     text: {
-      primary: "rgba(0, 0, 0, 0.87)",
+      primary: "#282C34",
       secondary: "rgba(0, 0, 0, 0.6)",
       disabled: "rgba(0, 0, 0, 0.38)",
     },

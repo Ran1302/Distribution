@@ -1,4 +1,5 @@
 import Test from "./components/Test";
+import UlapTax from "./components/UlapTax";
 import DefaultLayout from "./layouts/DefaultLayout";
 
 const routes = [
@@ -10,6 +11,10 @@ const routes = [
         path: "test",
         element: Test,
       },
+      {
+        path: "ulaptax",
+        element: UlapTax,
+      }
     ],
   },
 ];
