@@ -1,5 +1,5 @@
 import { Box, Grid, Link, Typography, makeStyles, useTheme, useMediaQuery, Container } from '@material-ui/core'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.up('md')]: {
             fontSize: "2rem",
+            width: "50%",
         },
         [theme.breakpoints.up('lg')]: {
             fontSize: "3rem",
@@ -87,14 +88,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const UlapTax = () => {
+const UlapTax = ({ tagline, taglineSpan, heroPageIconSrc, title, titleSpan, titleIconSrc, content, buttonTitle }) => {
     const classes = useStyles();
-    const theme = useTheme();
     const isXs = useMediaQuery("(max-width:600px)");
 
 
     useEffect(() => {
-        console.log(isXs);
         document.body.style.overflow = "hidden";
     })
 
@@ -114,12 +113,13 @@ const UlapTax = () => {
                                 display: "flex",
                                 justifyContent: "center",
                             }}>
-                                <img src="/images/UlapTaxHeroPageIcon.png" alt="UlapBiz" className={classes.image} />
+                                {heroPageIconSrc &&
+                                    <img src={heroPageIconSrc} alt="UlapBiz" className={classes.image} />
+                                }
                             </Box>
                             <Box>
                                 <Typography align='center' variant="h3" className={classes.tagline}>
-                                    Resolving Tax Troubles <br />
-                                    with <span>Expert Precision</span>
+                                    {tagline} <span>{taglineSpan}</span>
                                 </Typography>
                             </Box>
                         </Box>
@@ -133,15 +133,17 @@ const UlapTax = () => {
                             alignItems: "center",
                             gap: ".5rem",
                         }}>
-                            <img src="/images/UlapTaxIcon.png" alt="UlapTax" className={classes.image} style={{ width: "40%" }} />
+                            {titleIconSrc &&
+                                <img src={titleIconSrc} alt="UlapTax" className={classes.image} style={{ width: "40%" }} />
+                            }
                             <Typography variant='h2' align='center' className={classes.ulaptax}>
-                                Ulap<span>Tax</span>
+                                {title}<span>{titleSpan}</span>
                             </Typography>
                             <Typography component={"p"} align='center' className={classes.content}>
-                                Designed with integrated Philippine tax features on income tax, business tax, with holding taxes,  and mandatory compliance reports.
+                                {content}
                             </Typography>
                             <Link component={RouterLink} to="/ulaptax" underline="none" variant='h5' className={classes.scheduleDemo}>
-                                Schedule a Demo
+                                {buttonTitle}
                             </Link>
                         </Box >
                     </Grid>
@@ -149,7 +151,8 @@ const UlapTax = () => {
                 <Box className={classes.gradientBackground}>
 
                 </Box>
-            </Box> :
+            </Box>
+                :
                 <Container>
                     <Grid container >
                         <Grid item sm={12}>
@@ -158,10 +161,10 @@ const UlapTax = () => {
                                 display: "flex",
                                 justifyContent: "center",
                                 alignItems: "end",
+                                paddingTop: "2rem",
                             }}>
                                 <Typography align='center' variant="h3" className={classes.tagline}>
-                                    Resolving Tax Troubles <br />
-                                    with <span>Expert Precision</span>
+                                    {tagline} <span>{taglineSpan}</span>
                                 </Typography>
                             </Box>
                         </Grid>
@@ -181,7 +184,8 @@ const UlapTax = () => {
                                         justifyContent: "center",
                                         alignItems: "center",
                                     }}>
-                                        <img src="/images/UlapTaxHeroPageIcon.png" alt="UlapBiz" className={classes.image} style={{ width: "100%" }} />
+                                        {heroPageIconSrc &&
+                                            <img src={heroPageIconSrc} alt="UlapBiz" className={classes.image} />}
                                     </Box>
                                 </Grid>
                                 <Grid item sm={6}>
@@ -194,23 +198,25 @@ const UlapTax = () => {
                                         gap: ".5rem",
 
                                     }}>
-                                        <img src="/images/UlapTaxIcon.png" alt="UlapTax" className={classes.image} style={{ width: "40%" }} />
+                                        {titleIconSrc &&
+                                            <img src={titleIconSrc} alt="UlapTax" className={classes.image} style={{ width: "40%" }} />
+                                        }
                                         <Typography variant='h1' align='center' className={classes.ulaptax}>
-                                            Ulap<span>Tax</span>
+                                            {title}<span>{titleSpan}</span>
                                         </Typography>
                                         <Typography component={"p"} align='center' className={classes.content}>
-                                            Designed with integrated Philippine tax features on income tax, business tax, with holding taxes,  and mandatory compliance reports.
+                                            {content}
                                         </Typography>
-                                        <Link component={RouterLink} to="/ulaptax" underline="none" variant='h5' className={classes.scheduleDemo}>
-                                            Schedule a Demo
-                                        </Link>
+                                        {buttonTitle &&
+                                            <Link component={RouterLink} to="/ulaptax" underline="none" variant='h5' className={classes.scheduleDemo}>
+                                                {buttonTitle}
+                                            </Link>
+                                        }
                                     </Box>
                                 </Grid>
                             </Box>
                         </Grid>
                     </Grid>
-
-
                     <Box className={classes.gradientBackground}>
 
                     </Box>
@@ -220,4 +226,4 @@ const UlapTax = () => {
     )
 }
 
-export default UlapTax
+export default UlapTax;
