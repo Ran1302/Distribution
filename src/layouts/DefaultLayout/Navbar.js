@@ -12,7 +12,6 @@ import {
   Link,
   Box,
   Container,
-  Button,
   Collapse,
   useMediaQuery,
   useTheme,
@@ -25,8 +24,6 @@ const pages = [
   "Features",
   "Schedules and Reports",
   "Contact Us",
-  "Sign In",
-  "Sign Up",
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -49,13 +46,36 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     filter: "grayscale(10%)",
     transition: "all 500ms ease-in-out",
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       flexGrow: 1,
     },
     "&:hover": {
       filter: "grayscale(0)",
     },
   },
+  signin: {
+    fontSize: ".8rem",
+    border: `1px solid ${theme.palette.primary.main}`,
+    padding: ".5rem 1rem",
+    borderRadius: ".25rem",
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+      color: '#FAFAFA',
+    },
+  },
+  signup: {
+    fontSize: ".8rem",
+    padding: ".5rem 1rem",
+    borderRadius: ".25rem",
+    border: `1px solid ${theme.palette.primary.main}`,
+    backgroundColor: theme.palette.primary.main,
+    color: '#FAFAFA',
+    '&:hover': {
+      backgroundColor: '#FAFAFA',
+      color: theme.palette.primary.main,
+      border: `1px solid ${theme.palette.primary.main}`,
+    },
+  }
 }));
 
 const Navbar = () => {
@@ -80,7 +100,7 @@ const Navbar = () => {
             width: "100%",
           }}>
             <Box className={classes.iconContainer}>
-              <RouterLink to="/">
+              <RouterLink to="/" >
                 <Avatar src={UlapBizLogo} />
               </RouterLink>
               <Link
@@ -93,38 +113,81 @@ const Navbar = () => {
                 Ulap<span className={classes.biz}>Biz</span>
               </Link>
             </Box>
-            {isXs && <Box>
+            {isXs && <Box sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "flex-end",
+            }}>
               {open ?
                 <CloseIcon color="primary" onClick={() => setOpen(false)} /> :
                 <MenuIcon color="primary" onClick={() => setOpen(true)} />}
             </Box>}
-            <Box sx={{
-              display: "flex",
-              gap: "1rem",
-              "& :hover": {
-                color: "#FF7704",
-              }
-            }}>
-              {!isXs && pages.map((page, index) => (
-                <Link
-                  key={index}
-                  component={RouterLink}
-                  variant="h6"
-                  to={`/${page.toLowerCase().replace(" ", "-")}`}
-                  underline="none"
-                  color="textPrimary"
-                  style={{
-                    fontSize: ".8rem",
-                  }}
-                >
-                  {page}
-                </Link>
-              ))}
-            </Box>
+            {!isXs &&
+              <Box sx={{
+                display: "flex",
+                gap: "1rem",
+                justifyContent: "space-between",
+                width: "100%",
+                "& :hover": {
+                  color: "#FF7704",
+                }
+              }}>
+                <Box sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1rem",
+                }}>
+                  {!isXs && pages.map((page, index) => (
+                    <Link
+                      key={index}
+                      component={RouterLink}
+                      variant="h6"
+                      to={`/${page.toLowerCase().replace(" ", "-")}`}
+                      underline="none"
+                      color="textPrimary"
+                      style={{
+                        fontSize: ".8rem",
+                      }}
+                    >
+                      {page}
+                    </Link>
+                  ))}
+                </Box>
+                {!isXs &&
+                  <Box sx={{
+                    display: "flex",
+                    gap: "1rem",
+                  }}>
+                    <Link
+                      key="signin"
+                      component={RouterLink}
+                      variant="h6"
+                      to='test'
+                      underline="none"
+                      color="textPrimary"
+                      className={classes.signin}
+                    >
+                      Sign In
+                    </Link>
+                    <Link
+                      key="signup"
+                      component={RouterLink}
+                      variant="h6"
+                      to='test'
+                      underline="none"
+                      color="textPrimary"
+                      className={classes.signup}
+                    >
+                      Sign Up
+                    </Link>
+                  </Box>
+                }
+              </Box>
+            }
           </Box>
         </Toolbar>
-        {isXs &&
-          <Collapse in={open}>
+        <Collapse in={open}>
+          {isXs &&
             <Box sx={{
               display: "flex",
               flexDirection: "column",
@@ -145,10 +208,63 @@ const Navbar = () => {
                 >
                   {page}
                 </Link>
+
               ))}
+              <Link
+                key="signin"
+                component={RouterLink}
+                variant="h6"
+                to='test'
+                underline="none"
+                color="textPrimary"
+                style={{
+                  color: theme.palette.primary.main,
+                }}
+              >
+                Sign In
+              </Link>
+              <Link
+                key="signup"
+                component={RouterLink}
+                variant="h6"
+                to='test'
+                underline="none"
+                color="textPrimary"
+                style={{
+                  color: theme.palette.primary.main,
+                }}
+              >
+                Sign Up
+              </Link>
             </Box>
-          </Collapse>
-        }
+          }
+          {isXs &&
+            <>
+              <Link
+                key="signin"
+                component={RouterLink}
+                variant="h6"
+                to='test'
+                underline="none"
+                color="textPrimary"
+              // className={classes.signin}
+              >
+                Sign In
+              </Link>
+              <Link
+                key="signup"
+                component={RouterLink}
+                variant="h6"
+                to='test'
+                underline="none"
+                color="textPrimary"
+              // className={classes.signup}
+              >
+                Sign Up
+              </Link>
+            </>
+          }
+        </Collapse>
       </Container>
     </AppBar >
   );
