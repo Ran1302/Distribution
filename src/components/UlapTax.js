@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
             width: "100%",
         },
         [theme.breakpoints.up('md')]: {
-            width: "50%",
+            width: "100%",
         },
         height: "auto",
     },
@@ -88,7 +88,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const UlapTax = ({ tagline, taglineSpan, heroPageIconSrc, title, titleSpan, titleIconSrc, content, buttonTitle }) => {
+const UlapTax = ({
+    tagline = 'Resolving Tax Troubles with',
+    taglineSpan = 'Expert Precision',
+    heroPageIconSrc = '/images/UlapTaxHeroPageIcon.png',
+    title = 'Ulap',
+    titleSpan = 'Tax',
+    titleIconSrc = '/images/UlapTaxIcon.png',
+    content = 'Designed with integrated Philippine tax features on income tax, business tax, withholding taxes,  and mandatory compliance reports.',
+    buttonTitle = 'schedule a demo'
+}) => {
     const classes = useStyles();
     const isXs = useMediaQuery("(max-width:600px)");
 
