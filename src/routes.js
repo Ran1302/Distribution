@@ -1,5 +1,6 @@
 import Test from "./components/Test";
-import UlapTax from "./components/UlapTax";
+import UlapDistribution from "./components/UlapDistribution";
+import OrganizationalChart from "./components/OrganizationalChart";
 import DefaultLayout from "./layouts/DefaultLayout";
 
 const routes = [
@@ -12,9 +13,13 @@ const routes = [
         element: Test,
       },
       {
-        path: "ulaptax",
-        element: UlapTax,
-      }
+        path: "UlapDistribution",
+        element: UlapDistribution,
+      },
+      {
+        path: "OrganizationalChart",
+        element: OrganizationalChart,
+      },
     ],
   },
 ];
